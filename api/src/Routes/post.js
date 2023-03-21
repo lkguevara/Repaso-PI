@@ -6,9 +6,6 @@ const { createPost,createUser } = require('../handlers/postHandler');
 const postRouter = Router();
 
 postRouter.post('post', createPost);
-
 postRouter.post('/users', createUser);
-
-
 
 module.exports = postRouter;

@@ -1,4 +1,5 @@
-// handler
+const { createUserDB } = require("../controllers/usersControllers");
+
 const getUsers = (req, res) => {
     const {name} = req.query;
     if(name) res.status(200).send(`Aqui está el usuario ${name}`);
@@ -11,8 +12,16 @@ const getDetail = (req, res) => {
 };
 
 const createUsers = (req, res) => {
-    const {name, email, password} = req.body;
-    res.status(200).send(`Usuario ${name} creado con el email ${email} y la contraseña ${password}`);
+    const {name, email, phone} = req.body;
+
+    try {
+        const response = createUserDB(name, email, phone);
+        res.status(200).json(response);
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(400).json({error: error.message});
+    }
 };
 
 
