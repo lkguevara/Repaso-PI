@@ -1,11 +1,11 @@
 // requires
 const { Router } = require('express');
-const { createPost,createUser } = require('../handlers/postHandler');
+const { createdPost, getPosts } = require('../handlers/postHandler');
 
 // router
 const postRouter = Router();
 
-postRouter.post('post', createPost);
-postRouter.post('/users', createUser);
+postRouter.post('/', createdPost);
+postRouter.get('/', getPosts);
 
 module.exports = postRouter;

@@ -23,6 +23,11 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    created: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+    }
     }, 
     {
         timestamps: false, // cada vez que se crea un usuario, no se va a crear una fecha de creación y una fecha de actualización

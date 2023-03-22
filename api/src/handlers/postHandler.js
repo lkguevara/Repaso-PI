@@ -1,13 +1,29 @@
-const createPost = (req, res) => {
-    res.status(201).send('Post creado');
+const {postController} = require('../controllers/postControllers');
+
+const createdPost = async (req, res) => {
+    const {title, content, userId} = req.body;
+
+    try {
+        const newPost = await postController(title, content, userId);
+        res.status(201).json(newPost);
+    } 
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
+    
 }
 
-const createUser = (req, res) => {
-    res.status(201).send('Usuario creado');
-}
+const getPosts = (req, res) => {
 
+    try {
+        
+    } catch (error) {
+        
+    }
+
+}
 
 module.exports = {
-    createPost,
-    createUser
+    createdPost,
+    getPosts
 }

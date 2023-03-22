@@ -1,14 +1,20 @@
-# Primeros pasos
+# 1. Iniciando proyecto
 1. inicializar npm init -y
 2. instalar dependencias npm i express axios nodemon morgan sequelize pg pg-hstore dotenv
 3. configurar nodemon en el package.json. "start": "nodemon index.js"
 4. crear una carpeta index.js
 5. npm start y validar que este funcionando.
 
-# Configuración del servidor
+# 2. Configuración del servidor
 1. crear una carpeta src (fuente) y posterior un archivo app.js para configurar el servidor. 
 2. En el archivo app.js, requerir express y morgan, crear una constante para el servidor, instanciar morgan y exportar el servidor.
 3. En el archivo index.js requerir app y configurar el puerto.
+
+<!-- 
+Middleware: es una funcion que se ejecuta antes de que llegue a la ruta. Se encarga de recibir el request y la respuesta y pasarlos a la siguiente funcion. Se puede usar para validar datos, autenticar usuarios, etc.
+
+Morgan: es un middleware que se encarga de mostrar en consola las peticiones que llegan al servidor. 
+-->
 
 # Creación de rutas
 1. crear una carpeta routes y un archivo index.js
@@ -44,10 +50,6 @@ Los modelos son las tablas de la base de datos. Se encargan de definir la estruc
 1. crear una carpeta models y los modelos que se necesiten.
 2. en cada archivo se va a crear la estructura de la tabla y se va a exportar el modelo.
 3. requerir los modelos en el archivo db.js y configurar la relacion entre ellos.
-
-
-
-
 
 # (Controladores)
 El controlador es una funcion que se encarga de interactuar con la base de datos o api. Se encarga de recibir los datos del handler, interactuar con la base de datos y devolver los datos al handler. Hace la interaccion con fuentes externas.

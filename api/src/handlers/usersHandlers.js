@@ -1,22 +1,40 @@
-const { createUserDB } = require("../controllers/usersControllers");
+const { createUserDB, getUserById, searchUsersByName, getAllUsers } = require("../controllers/usersControllers");
 
-const getUsers = (req, res) => {
+//* obtener todos los usuarios
+const getUsersHandler = async (req, res) => {
     const {name} = req.query;
-    if(name) res.status(200).send(`Aqui está el usuario ${name}`);
-    else res.status(200).send('Aqui están todos los usuarios');
+    
+    try {
+        const result = name ? await searchUsersByName(name) : await getAllUsers();
+        res.status(200).json(result);
+    } 
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
+
 };
 
-const getDetail = (req, res) => {
+//* obtener un usuario por id
+const getDetailHandler = async (req, res) => {
     const {id} = req.params;
-    res.status(200).send(`Detalle del usuario ${id}`);
-};
-
-const createUsers = (req, res) => {
-    const {name, email, phone} = req.body;
+    const source = isNaN(id) ? 'bdd' : 'api';
 
     try {
-        const response = createUserDB(name, email, phone);
-        res.status(200).json(response);
+        const user = await getUserById(id, source);
+        res.status(200).json(user);
+    } 
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
+   
+};
+
+//* crear un usuario
+const createUsersHandler = async (req, res) => {
+    const {name, email, phone} = req.body;
+    try {
+        const newUser = await createUserDB(name, email, phone);
+        res.status(201).json(newUser);
     } 
     catch (error) {
         console.log(error);
@@ -26,8 +44,9 @@ const createUsers = (req, res) => {
 
 
 module.exports = {
-    getUsers,
-    getDetail,
-    createUsers
+    getUsersHandler,
+    getDetailHandler,
+    createUsersHandler
 };
 
+// 1:23

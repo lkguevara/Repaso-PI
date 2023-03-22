@@ -1,12 +1,12 @@
 // requires
 const { Router } = require('express');
-const { getUsers, getDetail, createUsers } = require('../handlers/usersHandlers.js');
+const { getUsersHandler, getDetailHandler, createUsersHandler } = require('../handlers/usersHandlers.js');
 
 // router
 const usersRouter = Router();
 
-usersRouter.get('/', getUsers);
-usersRouter.get('/:id', getDetail);
-usersRouter.post('/', createUsers);
+usersRouter.get('/', getUsersHandler);
+usersRouter.get('/:id', getDetailHandler);
+usersRouter.post('/', createUsersHandler);
 
 module.exports = usersRouter;

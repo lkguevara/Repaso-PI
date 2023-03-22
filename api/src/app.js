@@ -12,8 +12,6 @@ app.use(morgan('dev')); // para ver las peticiones que llegan al servidor
 app.use(express.json()); // para que el servidor entienda los json
 
 // routes
-app.use(mainRouter);
-
-
+app.use( mainRouter );
 
 module.exports = app;

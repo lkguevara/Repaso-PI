@@ -23,8 +23,8 @@ PostModel(sequelize);
 // crear las relaciones
 const { User, Post } = sequelize.models;
 
-User.hasMany(Post, { as: 'posts' }); // un usuario puede tener muchos posts
-Post.belongsTo(User, { as: 'user' }); // un post pertenece a un usuario
+User.hasMany(Post); // un usuario puede tener muchos posts
+Post.belongsTo(User); // un post pertenece a un usuario
 
 
 
