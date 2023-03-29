@@ -52,7 +52,9 @@ const searchUsersByName = async (name) => {
 const getUserById = async (id, source) => {
     const user = source === 'api' ?
         (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data :
-        await User.findByPk(id, {
+        // fetch
+        // (await (await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)).json()) :
+        await User.findByPk(id, { //findbyprimarykey
             include: { 
                 model: Post,
                 attributes: ['title', 'content'],
